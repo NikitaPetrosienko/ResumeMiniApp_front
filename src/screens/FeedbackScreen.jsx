@@ -1,10 +1,34 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaStar } from 'react-icons/fa';
+import axios from 'axios';
 import styles from '../styles/FeedbackScreen.module.css';
 
 export default function FeedbackScreen({ onFinish, onBack }) {
   const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+
+  const submitFeedback = async () => {
+    const tg = window.Telegram.WebApp;
+    const initData = tg?.initData || tg?.initDataUnsafe;
+
+    setSubmitting(true);
+    try {
+      await axios.post('https://your-api.onrender.com/feedback', {
+        rating,
+        comment,
+        initData,
+      });
+
+      tg.close(); // Закрытие мини‑аппа
+    } catch (err) {
+      console.error('Ошибка при отправке отзыва:', err);
+      alert('Не удалось отправить отзыв');
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className={styles.feedback}>
@@ -28,17 +52,19 @@ export default function FeedbackScreen({ onFinish, onBack }) {
 
       <textarea
         className={styles.comment}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
         placeholder="Комментарий (необязательно)"
       />
 
       <div className={styles.buttons}>
-        <button className={styles.backBtn} onClick={onBack}>
+        <button className={styles.backBtn} onClick={onBack} disabled={submitting}>
           Назад
         </button>
         <button
           className={styles.finishBtn}
-          onClick={() => onFinish(rating)}
-          disabled={rating === 0}
+          onClick={submitFeedback}
+          disabled={rating === 0 || submitting}
         >
           Завершить
         </button>

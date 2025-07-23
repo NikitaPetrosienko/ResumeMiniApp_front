@@ -1,10 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from '../styles/LaunchScreen.module.css';
 import logo from '../assets/logo.svg';
+import axios from 'axios';
 
 export default function LaunchScreen({ onFinish }) {
+  const [firstName, setFirstName] = useState(''); // хранение имени
+
   useEffect(() => {
+    const tg = window.Telegram.WebApp;
+    const initData = tg?.initData;
+
+    if (initData) {
+      axios
+        .get(`https://your-api.onrender.com/user`, {
+          params: { initData },
+        })
+        .then((res) => setFirstName(res.data.firstName))
+        .catch((err) => {
+          console.error(err);
+          setFirstName('друг'); // fallback
+        });
+    }
+
     const timer = setTimeout(onFinish, 2000);
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -25,7 +43,7 @@ export default function LaunchScreen({ onFinish }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        Hello, Nikita!
+        {`Приветствую, ${firstName || 'гость'}!`}
       </motion.h1>
     </div>
   );
