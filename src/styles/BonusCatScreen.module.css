@@ -1,0 +1,58 @@
+/* src/styles/BonusCatScreen.module.css */
+.bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: var(--white);
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--dark-blue);
+  margin: 0;
+}
+
+.fetchBtn,
+.nextBtn {
+  background: var(--orange);
+  color: var(--white);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: transform 0.2s, background 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.fetchBtn:hover:not(:disabled),
+.nextBtn:hover {
+  transform: scale(1.05);
+  background: var(--accent-yellow);
+}
+
+.fetchBtn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Адаптив: на очень узких экранах уменьшаем картинку */
+@media (max-width: 400px) {
+  .image {
+    width: 80%;
+    height: auto;
+  }
+}

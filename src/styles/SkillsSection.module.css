@@ -1,0 +1,26 @@
+.skills {
+  padding: 2rem 1rem;
+  background: var(--white);
+  text-align: center;
+}
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  color: var(--dark-blue);
+  margin-bottom: 1.5rem;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+.label {
+  font-size: 0.875rem;
+  color: var(--gray-1);
+}

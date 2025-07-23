@@ -1,0 +1,93 @@
+.feedback {
+  min-height: 100vh;
+  background: var(--orange);
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 5vw, 2.5rem);
+  margin: 0;
+}
+
+.stars {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.starWrapper {
+  cursor: pointer;
+}
+
+.inactiveStar {
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.2s;
+}
+
+.activeStar {
+  color: var(--accent-yellow);
+  transition: color 0.2s;
+}
+
+.comment {
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  resize: none;
+  font-size: 1rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 400px;
+  gap: 1rem;
+}
+
+.backBtn,
+.finishBtn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.backBtn {
+  background: var(--white);
+  color: var(--orange);
+}
+
+.finishBtn {
+  background: var(--white);
+  color: var(--orange);
+}
+
+.backBtn:hover,
+.finishBtn:hover {
+  transform: scale(1.05);
+}
+
+.finishBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .comment {
+    height: 80px;
+  }
+}
