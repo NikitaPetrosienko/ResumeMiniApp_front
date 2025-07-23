@@ -15,7 +15,7 @@ export default function FeedbackScreen({ onFinish, onBack }) {
 
     setSubmitting(true);
     try {
-      await axios.post('https://your-api.onrender.com/feedback', {
+      await axios.post('https://resumeminiapp-backend.onrender.com/feedback', {
         rating,
         comment,
         initData,

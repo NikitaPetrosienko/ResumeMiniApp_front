@@ -13,7 +13,7 @@ export default function LaunchScreen({ onFinish }) {
 
     if (initData) {
       axios
-        .get(`https://your-api.onrender.com/user`, {
+        .get(`https://resumeminiapp-backend.onrender.com/user`, {
           params: { initData },
         })
         .then((res) => setFirstName(res.data.firstName))
