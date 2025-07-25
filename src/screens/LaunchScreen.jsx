@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export default function LaunchScreen({ onFinish }) {
   const [firstName, setFirstName] = useState(''); // хранение имени
-  console.log('initData:', initData);
+  
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;

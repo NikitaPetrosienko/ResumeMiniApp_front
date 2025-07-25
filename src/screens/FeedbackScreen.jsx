@@ -9,7 +9,7 @@ export default function FeedbackScreen({ onFinish, onBack }) {
   const [comment, setComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  console.log('initData:', initData);
+
 
   const submitFeedback = async () => {
     const tg = window.Telegram.WebApp;
