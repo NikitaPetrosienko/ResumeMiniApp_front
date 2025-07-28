@@ -1,4 +1,3 @@
-// src/screens/AboutMeScreen.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import styles from '../styles/AboutMeScreen.module.css';
@@ -24,7 +23,7 @@ const aboutText = `
 export default function AboutMeScreen({ onContinue }) {
   return (
     <div className={styles.container}>
-      {/* Иллюстрация */}
+      {}
       <motion.img
         src={illustration}
         alt="Coding Illustration"
@@ -34,7 +33,7 @@ export default function AboutMeScreen({ onContinue }) {
         transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
       />
 
-      {/* Блок с текстом и кнопкой */}
+      {}
       <motion.div
         className={styles.textBlock}
         initial={{ opacity: 0, x: 50 }}

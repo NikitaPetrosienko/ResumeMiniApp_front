@@ -23,7 +23,7 @@ export default function FeedbackScreen({ onFinish, onBack }) {
         initData,
       });
 
-      tg.close(); // Закрытие мини‑аппа
+      tg.close(); 
     } catch (err) {
       console.error('Ошибка при отправке отзыва:', err);
       alert('Не удалось отправить отзыв');

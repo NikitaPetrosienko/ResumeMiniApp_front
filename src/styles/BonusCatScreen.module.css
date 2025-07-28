@@ -1,4 +1,3 @@
-/* src/styles/BonusCatScreen.module.css */
 .bonus {
   display: flex;
   flex-direction: column;
@@ -49,7 +48,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Адаптив: на очень узких экранах уменьшаем картинку */
+
 @media (max-width: 400px) {
   .image {
     width: 80%;

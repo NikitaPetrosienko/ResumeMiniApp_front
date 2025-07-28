@@ -5,7 +5,7 @@ import logo from '../assets/logo.svg';
 import axios from 'axios';
 
 export default function LaunchScreen({ onFinish }) {
-  const [firstName, setFirstName] = useState(''); // хранение имени
+  const [firstName, setFirstName] = useState(''); 
   
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function LaunchScreen({ onFinish }) {
         .then((res) => setFirstName(res.data.firstName))
         .catch((err) => {
           console.error(err);
-          setFirstName('друг'); // fallback
+          setFirstName('друг'); 
         });
     }
 

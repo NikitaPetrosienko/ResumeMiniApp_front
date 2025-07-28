@@ -1,6 +1,3 @@
-/* src/index.css */
-
-/* 1) Минимальный CSS Reset */
 *,
 *::before,
 *::after {
@@ -9,9 +6,8 @@
   box-sizing: border-box;
 }
 
-/* 2) Переменные бренда и типографика */
+
 :root {
-  /* Основные цвета */
   --yellow: #eaaa00;
   --orange: #ed6e1c;
   --green: #009639;
@@ -21,12 +17,8 @@
   --white: #ffffff;
   --gray-1: #53565a;
   --gray-2: #b6c7cf;
-
-  /* Акценты */
   --accent-yellow: #ffe500;
   --accent-red: #e30613;
-
-  /* Шрифты */
   --font-base: 'Inter', sans-serif;
   --font-heading: 'Montserrat', sans-serif;
 }
@@ -44,7 +36,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Ссылки */
+
 a {
   color: var(--orange);
   text-decoration: none;
@@ -53,7 +45,6 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Базовые кнопки */
 button {
   font-family: var(--font-base);
   cursor: pointer;
@@ -62,20 +53,20 @@ button {
   background: none;
 }
 
-/* Утилита контейнера */
+
 .container {
   width: min(100% - 2rem, 800px);
   margin: 0 auto;
 }
 
-/* Глобальные заголовки */
+
 h1, h2, h3, h4, h5 {
   font-family: var(--font-heading);
   color: var(--dark-blue);
   line-height: 1.2;
 }
 
-/* Мобильная оптимизация */
+
 @media (max-width: 480px) {
   html {
     font-size: 14px;

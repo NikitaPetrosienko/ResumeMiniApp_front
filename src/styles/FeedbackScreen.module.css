@@ -85,7 +85,6 @@
   cursor: not-allowed;
 }
 
-/* Mobile adjustments */
 @media (max-width: 480px) {
   .comment {
     height: 80px;

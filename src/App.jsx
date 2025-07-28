@@ -12,7 +12,7 @@ import FeedbackScreen  from './screens/FeedbackScreen';
 export default function App() {
   const [stage, setStage] = useState('launch');
 
-  // автоматический переход с Launch → Intro
+ 
   useEffect(() => {
     if (stage === 'launch') {
       const t = setTimeout(() => setStage('intro'), 2000);

@@ -32,7 +32,7 @@ export default function BonusCatScreen({ onContinue }) {
     <div className={styles.bonus}>
       <h2 className={styles.heading}>Бонус‑контент</h2>
 
-      {/* Кнопка получения котика */}
+      {}
       {!catUrl && (
         <button
           className={styles.fetchBtn}
@@ -43,7 +43,7 @@ export default function BonusCatScreen({ onContinue }) {
         </button>
       )}
 
-      {/* Изображение котика */}
+      {}
       {catUrl && (
         <motion.img
           src={catUrl}
@@ -55,7 +55,7 @@ export default function BonusCatScreen({ onContinue }) {
         />
       )}
 
-      {/* Кнопка Далее под изображением */}
+      {}
       {showNext && (
         <button
           className={styles.nextBtn}
