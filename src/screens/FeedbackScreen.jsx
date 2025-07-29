@@ -3,27 +3,34 @@ import { motion } from 'framer-motion';
 import { FaStar } from 'react-icons/fa';
 import axios from 'axios';
 import styles from '../styles/FeedbackScreen.module.css';
+import { API } from '../lib/api';
 
-export default function FeedbackScreen({ onFinish, onBack }) {
+export default function FeedbackScreen({ onBack }) {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-
-
   const submitFeedback = async () => {
     const tg = window.Telegram.WebApp;
-    const initData = tg?.initData || tg?.initDataUnsafe;
+    const initData = tg.initData; 
+    if (!initData) {
+      alert('Ошибка: нет данных пользователя');
+      return;
+    }
 
     setSubmitting(true);
     try {
-      await axios.post('https://resumeminiapp-backend.onrender.com/feedback', {
+      const resp = await axios.post(`${API}/feedback`, {
         rating,
         comment,
         initData,
       });
 
-      tg.close(); 
+      if (resp.data?.status === 'ok') {
+        tg.close();
+      } else {
+        throw new Error('Непонятный ответ от сервера');
+      }
     } catch (err) {
       console.error('Ошибка при отправке отзыва:', err);
       alert('Не удалось отправить отзыв');
@@ -37,7 +44,7 @@ export default function FeedbackScreen({ onFinish, onBack }) {
       <h2 className={styles.heading}>Оцените мини‑апп</h2>
 
       <div className={styles.stars}>
-        {[1, 2, 3, 4, 5].map((value) => (
+        {[1, 2, 3, 4, 5].map(value => (
           <motion.div
             key={value}
             className={styles.starWrapper}
@@ -55,7 +62,7 @@ export default function FeedbackScreen({ onFinish, onBack }) {
       <textarea
         className={styles.comment}
         value={comment}
-        onChange={(e) => setComment(e.target.value)}
+        onChange={e => setComment(e.target.value)}
         placeholder="Комментарий (необязательно)"
       />
 

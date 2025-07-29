@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
 import styles from '../styles/LaunchScreen.module.css';
 import logo from '../assets/logo.svg';
-import axios from 'axios';
+import { API } from '../lib/api';
 
 export default function LaunchScreen({ onFinish }) {
-  const [firstName, setFirstName] = useState(''); 
-  
+  const [firstName, setFirstName] = useState('');
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
-    const initData = tg.initData || tg.initDataUnsafe;
+    const initData = tg.initData; 
+    if (!initData) return;      
 
-    if (initData) {
-      axios
-        .get(`https://resumeminiapp-backend.onrender.com/user`, {
-          params: { initData },
-        })
-        .then((res) => setFirstName(res.data.firstName))
-        .catch((err) => {
-          console.error(err);
-          setFirstName('друг'); 
-        });
-    }
-
-    const timer = setTimeout(onFinish, 2000);
-    return () => clearTimeout(timer);
+    axios
+      .get(`${API}/user`, { params: { initData } })
+      .then(res => {
+        setFirstName(res.data.firstName);
+      })
+      .catch(() => {
+        setFirstName('друг');
+      })
+      .finally(() => {
+        setTimeout(onFinish, 1000);
+      });
   }, [onFinish]);
 
   return (
