@@ -10,17 +10,13 @@ export default function LaunchScreen({ onFinish }) {
 
   useEffect(() => {
     const tg = window.Telegram.WebApp;
-    const initData = tg.initData; 
-    if (!initData) return;      
+    const initData = tg.initData;
+    if (!initData) return;
 
     axios
       .get(`${API}/user`, { params: { initData } })
-      .then(res => {
-        setFirstName(res.data.firstName);
-      })
-      .catch(() => {
-        setFirstName('друг');
-      })
+      .then(res => setFirstName(res.data.firstName))
+      .catch(() => setFirstName('друг'))
       .finally(() => {
         setTimeout(onFinish, 1000);
       });
