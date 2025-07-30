@@ -16,6 +16,7 @@
 │       ├── styles/   # CSS-модули
 │       └── main.jsx  # точка входа
 └── README.md
+```
 Текущий статус
 ✅ Реализованы все экраны Mini App:
 
@@ -44,6 +45,7 @@ Node.js ≥ 18
 npm ≥ 8
 
 Локальный запуск
+```bash
 # Сервер
 cd server
 npm install
@@ -54,6 +56,7 @@ cd client
 npm install
 # в src/lib/api.js или в .env (VITE_API_URL) пропишите http://localhost:3001
 npm run dev      # по‑умолчанию http://localhost:5173
+```
 Технологии
 Фронтенд
 React 18 + Vite
