@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-const tg = window.Telegram.WebApp;
-tg.ready();
+// Инициализируем Telegram WebApp SDK
+window.Telegram.WebApp.ready();
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+createRoot(document.getElementById('root')).render(<App />);

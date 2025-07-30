@@ -11,28 +11,17 @@ export default function FeedbackScreen({ onBack }) {
   const [submitting, setSubmitting] = useState(false);
 
   const submitFeedback = async () => {
-    const tg = window.Telegram.WebApp;
-    const initData = tg.initData; 
-    if (!initData) {
-      alert('Ошибка: нет данных пользователя');
-      return;
-    }
-
     setSubmitting(true);
     try {
-      const resp = await axios.post(`${API}/feedback`, {
-        rating,
-        comment,
-        initData,
-      });
-
-      if (resp.data?.status === 'ok') {
-        tg.close();
+      const resp = await axios.post(`${API}/feedback`, { rating, comment });
+      if (resp.data.status === 'ok') {
+        window.Telegram.WebApp.sendData(JSON.stringify({ rating, comment }));
+        window.Telegram.WebApp.close();
       } else {
-        throw new Error('Непонятный ответ от сервера');
+        throw new Error('Сервер вернул ошибку');
       }
     } catch (err) {
-      console.error('Ошибка при отправке отзыва:', err);
+      console.error(err);
       alert('Не удалось отправить отзыв');
     } finally {
       setSubmitting(false);
@@ -44,7 +33,7 @@ export default function FeedbackScreen({ onBack }) {
       <h2 className={styles.heading}>Оцените мини‑апп</h2>
 
       <div className={styles.stars}>
-        {[1, 2, 3, 4, 5].map(value => (
+        {[1,2,3,4,5].map(value => (
           <motion.div
             key={value}
             className={styles.starWrapper}
@@ -73,7 +62,7 @@ export default function FeedbackScreen({ onBack }) {
         <button
           className={styles.finishBtn}
           onClick={submitFeedback}
-          disabled={rating === 0 || submitting}
+          disabled={rating===0||submitting}
         >
           Завершить
         </button>
